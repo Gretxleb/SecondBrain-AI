@@ -1,0 +1,32 @@
+version: "3.9"
+services:
+  postgres:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: secondbrain
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/secondbrain
+      DATABASE_SSL: "false"
+      JWT_SECRET: replace-with-secure-secret
+      OPENAI_API_KEY: replace-with-openai-key
+      STRIPE_SECRET_KEY: replace-with-stripe-secret
+      STRIPE_WEBHOOK_SECRET: replace-with-stripe-webhook-secret
+      STRIPE_PRICE_ID: price_1234567890abcdef
+      ADMIN_EMAIL: admin@secondbrain.ai
+    depends_on:
+      - postgres
+    ports:
+      - "4000:4000"
+volumes:
+  postgres-data:

@@ -1,0 +1,6 @@
+-keep class com.secondbrain.ai.** { *; }
+-keepclassmembers class com.secondbrain.ai.** { *; }
+-keepattributes Signature
+-keepattributes *Annotation*
+-dontwarn kotlinx.coroutines.**
+-dontwarn com.google.firebase.**

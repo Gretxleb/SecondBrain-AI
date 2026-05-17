@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">SecondBrain AI</string>
+    <string name="sign_in">Iniciar sesión</string>
+    <string name="sign_out">Cerrar sesión</string>
+    <string name="email">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="notes">Notas</string>
+    <string name="search">Buscar</string>
+    <string name="settings">Configuración</string>
+    <string name="assistant">Asistente</string>
+    <string name="reminders">Recordatorios</string>
+    <string name="voice">Voz</string>
+    <string name="loading">Cargando</string>
+    <string name="empty_state">Aún no hay contenido</string>
+</resources>
