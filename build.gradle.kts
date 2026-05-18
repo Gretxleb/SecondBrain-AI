@@ -1,8 +1,27 @@
 plugins {
-    `kotlin-dsl`
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
 }
 
-repositories {
-    google()
-    mavenCentral()
+android {
+    namespace = "com.secondbrain.ai"
+    compileSdk = 34
+
+    defaultConfig {
+        applicationId = "com.secondbrain.ai"
+        minSdk = 24
+        targetSdk = 34
+        versionCode = 1
+        versionName = "1.0"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+        }
+    }
+}
+
+dependencies {
+    implementation("androidx.core:core-ktx:1.12.0")
 }
