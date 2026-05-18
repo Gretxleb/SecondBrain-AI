@@ -31,7 +31,7 @@ jobs:
         run: npm install
       - name: Run lint
         working-directory: backend
-        run: npm run lint
+        run: npx eslint . --ext .ts
       - name: Run tests
         working-directory: backend
         run: npm test
