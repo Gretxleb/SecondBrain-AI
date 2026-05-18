@@ -1,5 +1,4 @@
 name: Backend CI
-
 on:
   push:
     branches:
@@ -9,7 +8,6 @@ on:
     branches:
       - main
       - master
-
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -19,23 +17,18 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: 20
-      - name: Cache npm
-        uses: actions/cache@v4
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-node-${{ hashFiles('backend/package.json', 'backend/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-
       - name: Install dependencies
         working-directory: backend
-        run: npm install
+        run: npm ci
+      - name: Fix eslint permissions
+        working-directory: backend
+        run: chmod +x node_modules/.bin/eslint
       - name: Run lint
         working-directory: backend
-        run: node ./node_modules/eslint/bin/eslint.js . --ext .ts
+        run: ./node_modules/.bin/eslint . --ext .ts
       - name: Run tests
         working-directory: backend
         run: npm test
       - name: Build backend
         working-directory: backend
         run: npm run build
-# force actions Mon May 18 10:16:26     2026
